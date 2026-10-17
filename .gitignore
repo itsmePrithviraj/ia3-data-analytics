@@ -1,0 +1,13 @@
+.DS_Store
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.env
+.env.*
+!.env.example
+# Personal assignment screenshot: retained locally, excluded from GitHub.
+WhatsApp Image*.jpeg
+# Add selected raw data deliberately after checking attribution requirements.
+data/raw/*
+!data/raw/README.md
