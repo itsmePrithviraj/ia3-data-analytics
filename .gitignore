@@ -20,3 +20,5 @@ outputs/real/
 .pytest_cache/
 .jupyter/
 .mplconfig/
+# Internal report rendering and layout checks.
+report/work/
