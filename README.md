@@ -1,34 +1,70 @@
 # The Screen-Time Blind Spot
-
 **Estimated versus phone-recorded screen time among B.Tech students**
 
-CES 2103 — IA3 Data Analytics Project. Status: topic selected; collection protocol prepared for discussion and pilot. No participant data have been collected or analyzed in this repository.
+CES 2103 — IA3 Data Analytics. Python implementation completed for development; survey collection and the final report are pending.
 
-Build a reproducible Python analysis using a real, attributable dataset with more than 50 observations, explaining the concepts and code alongside the CES 2103 curriculum.
+**The included dataset is SIMULATED: 120 fictional responses, 112 usable pairs and 8 deliberate validation cases. No students were surveyed to produce it.** Generated rows must not be submitted as collected student evidence.
 
-## Planning documents
+## Start here
+- [Explained, executed notebook](notebooks/01_screen_time_analysis.ipynb)
+- [Single-form questions](docs/SURVEY_SCRIPT.md)
+- [Study design and variables](docs/STUDY_PROTOCOL.md)
+- [Curriculum and Python syntax map](docs/CURRICULUM_MAP.md)
+- [Replace the CSV with real responses](docs/REAL_DATA_GUIDE.md)
+- [Demonstration outputs](outputs/simulated/RUN_SUMMARY.md)
+- [Assignment requirements](docs/PROJECT_PLAN.md)
 
-- [Study design, variables and sampling](docs/STUDY_PROTOCOL.md)
-- [Exact survey questions and invitation](docs/SURVEY_SCRIPT.md)
-- [Prespecified analysis and report plan](docs/ANALYSIS_PLAN.md)
-- [Assignment requirements and workflow](docs/PROJECT_PLAN.md)
-- [Earlier dataset shortlist (historical)](docs/TOPIC_SHORTLIST.md)
-- [Curriculum and Python learning map](docs/CURRICULUM_MAP.md)
+## Run the project
+Tested with Python 3.12. Create a local environment:
+```sh
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python run.py --config config/simulated.json
+python -m pytest
+```
+The simulated CSV is already included. To regenerate the same seeded dataset:
+```sh
+python run.py --generate-simulated
+```
+For a notebook kernel:
+```sh
+python -m ipykernel install --prefix .venv --name screentime --display-name "Python (screen-time project)"
+JUPYTER_PATH="$PWD/.venv/share/jupyter" python scripts/execute_notebook.py
+```
+Open the notebook in an editor with Jupyter support and select this environment to explore interactively. The execution script runs and saves all cells without needing a notebook server.
 
-## Current decision
+Once real responses exist:
+```sh
+python run.py --config config/real.json
+```
+Change the notebook's separate `CONFIG_PATH` to `config/real.json` when using it with real responses. Missing real input fails clearly; there is no automatic fallback to simulation.
 
-Selected on 17 October 2026: compare B.Tech students' estimates of their average daily primary-phone screen time with participant-transcribed device records for the same seven completed days. Recruitment can include friends at multiple colleges; this is not limited to MIT Manipal.
+## What the project asks
+How closely do B.Tech students estimate their own average daily smartphone use? One student estimates first, then enters seven completed daily totals for the same primary phone. Both measurements belong to the same person and date window.
 
-Proposed target: 100 valid participant pairs, with at least 60 usable pairs for the intended project scale. One student contributes one observation. Primary test: two-sided paired t-test of mean recorded-minus-estimated minutes/day = 0, at alpha 0.05. The sample is a convenience/referral sample; it is not representative of all B.Tech students.
+The primary analysis is a two-sided paired t-test of mean recorded-minus-estimated minutes/day = 0, with alpha 0.05. EDA examines agreement, error distribution and absolute error. A convenience sample cannot establish what all B.Tech students do.
 
-Next: discuss the draft, pilot with five volunteers across Android/iPhone where possible, revise and freeze the questions, then collect genuine responses. No live form has been created, and no invitations have been sent. Numerical results and the final report require those responses.
+A single form collects no name, participant ID, college, OS, study year or app list. The pipeline assigns IDs by source-row order after export. IDs are stable within a frozen source file, not across re-ordered exports. Keep the source export and its checksum.
 
-## Planned tools
+## Structure
+```text
+config/             source path, provenance, column mapping, alpha
+data/simulated/     fictional CSV and generation assumptions
+data/templates/     empty canonical survey CSV
+data/raw/           local real responses (ignored by Git)
+src/screentime/     simulation, validation, EDA and paired inference
+notebooks/          explained, executed analysis
+scripts/            notebook creation and fresh-kernel execution
+outputs/simulated/ labelled demonstration tables, figures and audit
+outputs/real/      local real-data results (ignored by Git)
+tests/              statistical and data-validation checks
+docs/               protocol, form, curriculum and report handoff
+report/             reserved for the later 4–5 page report
+```
 
-Python, Jupyter, pandas, NumPy, Matplotlib/Seaborn and SciPy. Add statsmodels only if the selected analysis needs it. Dependencies and exact versions will be recorded when implementation starts.
+Every run preserves source data and exports a row audit, cleaned table, descriptive statistics, exclusion counts, statistics JSON, figures, summary and provenance manifest. Missing daily totals are not replaced with invented values. Identical patterns are flagged for review, not automatically deleted.
 
-Planned directories: `data/` for source metadata and data; `notebooks/` for explained analysis; `src/` for reusable code if needed; `outputs/` for figures and tables; `report/` for the final report.
+Keep real participant records local. **A tracked notebook can contain real rows and plots after execution; clear its outputs before committing any real-data run.** The parent study folder is reference material and is not changed or uploaded.
 
-The parent study folder is reference material only. Lecture files and the personal assignment screenshot are not included in this repository. Participant-level data stay local by default; GitHub stores methods, code and appropriately aggregated outputs.
-
-Planning date: 17 October 2026. Deadline stated in the supplied assignment screenshot: **26 October 2026**. Confirm any later instructor updates before submission.
+Target 100 valid responses, with 60 as a practical project target minimum, not a power calculation or a requirement in the screenshot. Never top up real responses with generated rows. The final report is pending, with submission due **26 October 2026** according to the supplied screenshot.

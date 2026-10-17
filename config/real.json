@@ -1,0 +1,7 @@
+{
+  "data_kind": "REAL",
+  "input_csv": "data/raw/screen_time_real.csv",
+  "output_dir": "outputs/real",
+  "alpha": 0.05,
+  "column_map": {}
+}

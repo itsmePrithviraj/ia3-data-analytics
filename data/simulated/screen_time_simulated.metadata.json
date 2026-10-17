@@ -1,0 +1,20 @@
+{
+  "data_origin": "SIMULATED",
+  "seed": 20261017,
+  "rows": 120,
+  "purpose": "Development and teaching only; no respondents were surveyed.",
+  "reference_end_dates": "2026-10-13 through 2026-10-17 (fictional)",
+  "day_order": "day_1 is six days before reference_end_date; day_7 is reference_end_date",
+  "assumptions": {
+    "median_baseline_minutes": 270,
+    "baseline_log_sd": 0.43,
+    "weekend_multiplier": 1.1,
+    "daily_log_sd": 0.23,
+    "mean_underestimation_minutes": 20,
+    "bias_sd": 65,
+    "additional_estimate_noise_sd": 25,
+    "estimate_rounding_minutes": 15
+  },
+  "quality_cases": "First eight rows each contain one deliberate exclusion case; see simulate.py.",
+  "not_calibrated_to_real_data": true
+}

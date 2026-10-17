@@ -1,0 +1,7 @@
+{
+  "data_kind": "SIMULATED",
+  "input_csv": "data/simulated/screen_time_simulated.csv",
+  "output_dir": "outputs/simulated",
+  "alpha": 0.05,
+  "column_map": {}
+}

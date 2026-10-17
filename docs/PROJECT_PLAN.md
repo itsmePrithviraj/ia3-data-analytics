@@ -12,7 +12,7 @@ Source: the local WhatsApp screenshot supplied by the student, read on 17 Octobe
 - Five marks: dataset, preprocessing, EDA, CDA and report format, one mark each.
 - Further peer evaluation and submission instructions are to be shared separately.
 
-The screenshot does not specify a minimum number of rows. More than 40–50 observations is the student's additional requirement; aim for more than 50 usable observations after justified preprocessing and adequate observations in each comparison group.
+The screenshot does not specify a minimum number of rows. More than 40–50 observations is the student's additional requirement; aim for more than 50 usable paired observations after justified preprocessing.
 
 ## Agreed sequence
 
@@ -26,7 +26,9 @@ The screenshot does not specify a minimum number of rows. More than 40–50 obse
 
 Team number and member details are needed when preparing the report; they do not block preparing the survey.
 
-Selected-study details are in `STUDY_PROTOCOL.md`, `SURVEY_SCRIPT.md` and `ANALYSIS_PLAN.md`. The older dataset shortlist is retained as planning history. No results or completed participant dataset exist yet.
+Suggested three-person division: one member owns survey piloting, collection and source documentation; one owns validation and EDA; one owns the paired-test explanation, assumptions and report integration. Each should review the others' work and understand the full notebook. This is a proposed allocation, not a claim that those contributions have already happened.
+
+Selected-study details are in `STUDY_PROTOCOL.md`, `SURVEY_SCRIPT.md` and `ANALYSIS_PLAN.md`. The older dataset shortlist is retained as planning history. As of 18 October, the single-form design and Python workflow are implemented with 120 explicitly simulated development rows (112 usable). No real participant dataset or final empirical report exists yet. See the executed notebook for demonstration outputs and `REAL_DATA_GUIDE.md` for replacement instructions.
 
 ## Scope and interpretation
 

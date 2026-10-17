@@ -1,55 +1,43 @@
 # Curriculum and Python learning map
+The parent Data Analytics folder is reference material only. This map uses its course plan, topic notes and corrections; no original study material was modified.
 
-## Selected project: screen-time perception among B.Tech students
-
-| Actual study task | Course concept | Purpose |
+| Project step | Course connection | Python used and meaning |
 |---|---|---|
-| One student, two matched measurements | L4: observations and variables | Establish that estimated and recorded values are paired |
-| Convert hours/minutes and validate seven daily entries | L11–L12 / T3: cleaning | Avoid unit errors, incomplete weeks and impossible values |
-| Join two survey submissions by anonymous participant code | L12–L13: integration/entity identification | Preserve the correct estimate–recorded pairing |
-| Average seven daily totals; calculate signed/absolute error | L17: aggregation and attribute construction | Produce the outcome being studied |
-| Mean, median, sample SD, quartiles and histograms | L5: descriptive statistics | Describe usage and estimation errors |
-| Scatterplot with equality line | L7–L10: relationships | Contrast agreement with correlation |
-| Define H0/H1 and alpha in advance | L21: hypothesis testing | Make the primary question confirmatory |
-| Paired t-test on recorded minus estimated | L22 / T6: paired samples | Test mean bias using the SD of within-person differences |
-| 95% confidence interval for mean difference | L6 and L22 | Express uncertainty in minutes/day |
+| One person, two matched measurements | L4: observations, variables and scales | `df.head()`, `df.shape`, `df.dtypes`; IDs are labels |
+| Validate dates, units, missingness and repeats | L11–L13 / T3: preprocessing | `pd.to_datetime()`, `isna()`, `duplicated()`; explicit row reasons |
+| Average seven daily entries | L17: aggregation / attribute construction | `.mean(axis=1, skipna=False)`; across columns, require complete days |
+| Signed and absolute error | L17: transformation | column subtraction, `.abs()` |
+| Center and spread | L5: descriptive statistics | `.describe()`, `.mean()`, `.median()`, `.std(ddof=1)` |
+| Agreement and error distribution | L7–L10: visual relationships | Seaborn scatterplot/histogram; Matplotlib equality line |
+| Specify H0/H1, alpha and two-sided decision | L21: testing | prespecified config alpha; comparisons and conditional statements |
+| Test the mean within-person difference | L22 / T6: paired samples | `stats.ttest_rel(recorded, estimated)` |
+| Quantify uncertainty | L6 and L22: confidence intervals | `stats.t.interval()`; distinguish SD from SE |
+| Diagnose assumptions | Practical extension to testing | `stats.probplot()`, Tukey flags; flags do not force exclusions |
+| Reproducibility | Project practice | seed, config, source checksum, versions, reusable functions |
 
-Primary source for paired differences: `LMS/L22 - Copy.pdf`, physical pp. 27–34; existing note `study-guide/notes/07_Z_T_TESTS.md`, section 8. The paired design does not require a before/after intervention: two measurements of the same person's same-week use also form a pair.
+A paired design does not require a before/after intervention: estimate and recorded use refer to the same person and period. One form keeps the pair in a single row, so no cross-form join is needed.
 
-Correlation alone does not measure agreement. Mean absolute error and an optional paired bootstrap are practical extensions. PCA, ANOVA and Apriori are not required for this question.
+## Library roles and syntax
+- **pandas** handles tables: `df["column"]` selects a Series; `df[["a", "b"]]` selects two columns; a method such as `.mean()` calculates a result.
+- **NumPy** supplies arrays and numerical operations, including seeded simulation and square roots. `np.random.default_rng(seed)` makes a reproducible random stream.
+- **Matplotlib** controls figure axes, labels and exports. **Seaborn** makes statistical plots from table columns.
+- **SciPy** supplies the t distribution and paired test. Arguments inside parentheses specify the choice: `alternative="two-sided"`.
+- **Jupyter** places explanations, executable cells and outputs together.
+- **pytest** checks validation and numerical behavior; it is a software tool, not a statistical test of the research hypothesis.
 
-Based on the parent folder's course map, official course-plan transcript, relevant topic notes, correction register and selected LMS transcripts. Original study files remain untouched. Official lecture numbering is used here; some lecturer filenames use shifted numbers.
+`axis=1` means across columns within a row. `ddof=1` uses n−1 for sample variance. `NaN` is missing, not zero. `Path` makes file paths portable. A function packages reusable logic; the notebook walks through the same formulas separately and checks agreement with the pipeline.
 
-| Project work | Course connection | Planned Python tools |
-|---|---|---|
-| Define observation, variable and measurement scale | L4 | DataFrame columns, `dtypes`, `head()` |
-| Summarize center, spread and distributions | L5 | `describe()`, `mean()`, `median()`, sample `std()` |
-| Explain uncertainty of an estimate | L6 / T2 | Confidence intervals; distinguish SD from SE |
-| Plot relationships and group summaries | L7–L10 | Seaborn/Matplotlib, `groupby()`, `crosstab()`, correlation |
-| Audit missingness, units, impossible values and duplicates | L11–L13 / T3 | `isna()`, `duplicated()`, type conversion and validation |
-| Transform variables only when needed | L17–L20 / T5 | Derived columns, category labels, justified transformations |
-| Define H0/H1, alpha and decision rule | L21 | Explicit notebook methods section before test results |
-| Compare two independent means, if chosen | L22 / T6 | SciPy `ttest_ind(..., equal_var=False)` for Welch |
-| Test categorical association, if chosen | L23 / T7; introduced in L13 | SciPy `chi2_contingency()` plus expected-count checks |
+For example, 4:30 converts to 4×60+30 = 270 minutes. The difference uses recorded minus estimated; switching argument order flips t and the CI direction, though a two-sided p-value stays the same.
 
-PCA (L14–L15), regression (L16), ANOVA (L23) and association mining are optional when the question actually needs them. We will not add techniques just to tick syllabus boxes.
+## Exact local source locators
+Paths below are relative to the parent Data Analytics folder, outside this repository.
+- `CES 2103_Data Analytics_Course Plan_2026.pdf`, physical p. 6; transcript `study-guide/sources/extracted/CP.md`.
+- `LMS/L11-L13 - Copy.pdf`, pp. 2–18 for preprocessing; pp. 20–21 for association/causation cautions.
+- `LMS/L21.pdf`, pp. 3–24 for hypothesis setup.
+- **`LMS/L22 - Copy.pdf`, pp. 27–34 for paired differences.**
+- `study-guide/notes/07_Z_T_TESTS.md`, section 8.
+- `study-guide/COURSE_MAP.md` and `study-guide/sources/CORRECTIONS.md`.
 
-## Local source locators
+Official lecture numbering is used; some lecturer filenames use shifted labels. Effect size, Q–Q diagnostics and provenance controls are useful extensions, not claims that every detail is explicitly required in the syllabus.
 
-- Official lecture labels: `CES 2103_Data Analytics_Course Plan_2026.pdf`, physical page 6; existing transcript `study-guide/sources/extracted/CP.md`.
-- Preprocessing: `LMS/L11-L13 - Copy.pdf`, pp. 2–18; nominal association and causation cautions, pp. 20–21.
-- Hypothesis setup: `LMS/L21.pdf`, pp. 3–24.
-- Mean comparisons: `LMS/L22 - Copy.pdf`, pp. 4–55; Welch material pp. 44, 49–54.
-- Context and corrections: `study-guide/COURSE_MAP.md`, `study-guide/sources/CORRECTIONS.md`, and topic notes `01_PREPROCESSING_CLEANING.md`, `07_Z_T_TESTS.md`, `08_CHI_SQUARE_ANOVA.md`.
-
-These paths are relative to the parent Data Analytics study folder, which is not part of the GitHub repository.
-
-## How the implementation will be taught
-
-For each step: explain the question and relevant course concept; introduce the library and syntax; run a small block; interpret the output; connect it to the report.
-
-For example, we will explain that `df` names a table, `df["column"]` selects a column, a method such as `.mean()` computes a summary, and arguments specify choices. For a test, connect the software result to the classroom statistic and work through a small part manually.
-
-Library roles: pandas for tables; NumPy for numerical operations; Matplotlib/Seaborn for plots; SciPy for statistical procedures; Jupyter for code, explanations and outputs together. Effect sizes and assumption diagnostics will be labeled as practical extensions where they go beyond the supplied teaching material.
-
-Current learning status: project planning introduced; no claim of independent mastery or completed analysis.
+PCA, ANOVA, regression and Apriori are not needed to answer this question. More methods do not automatically improve a mini project. The notebook explains a compact, defensible analysis; it does not imply that the learner has already mastered it.

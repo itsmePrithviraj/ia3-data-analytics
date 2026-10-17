@@ -1,0 +1,8 @@
+data_origin,reason,rows
+SIMULATED,invalid_or_missing_daily_record,2
+SIMULATED,estimate_before_check_not_yes,1
+SIMULATED,consent_not_yes,1
+SIMULATED,btech_enrolled_not_yes,1
+SIMULATED,first_response_not_yes,1
+SIMULATED,invalid_reference_end_date,1
+SIMULATED,record_scope_confirmed_not_yes,1

@@ -1,82 +1,68 @@
-# Survey script — draft v0.1
+# Single survey form — ready to copy
+**Title:** B.Tech Smartphone Usage Study
 
-This is ready-to-copy wording for discussion and pilot, not a deployed form. Keep the participant-facing title neutral; do not say that students underestimate usage before they respond. Test completion time in the pilot before quoting one in invitations.
+**Description:** We are conducting a Data Analytics course project about how B.Tech students estimate smartphone use. Please first estimate your usage, then check your phone's report for the same seven completed days. Participation is voluntary. We do not ask for your name, email, college or contact details. Individual responses will be kept by the project team for analysis; the course report will present aggregated results. You can stop before submitting. Because we do not collect an identifying code, we may be unable to locate your response for withdrawal after submission.
+
+## Settings and flow
+Use one form with sections. Turn off email collection, public response summaries and response editing after submission. Avoid sign-in requirements where possible; the form itself should not ask for an identifier. Do not enable a sign-in-based one-response restriction without reconsidering the participation wording.
+
+A section break is an instruction aid, not a technical lock against going back. Do not claim that it prevents estimate editing. No form has been created or invitations sent automatically.
+
+## Section 1 — participation
+Use required Yes / No multiple choice. Branch No to the end, without proceeding to usage questions.
+1. **Do you voluntarily agree to participate in this course project?** → `consent`
+2. **Are you currently enrolled in a B.Tech programme?** → `btech_enrolled`
+3. **Is this your first response to this study, including any pilot or trial response?** → `first_response`
+
+## Section 2 — estimate before checking
+Instruction: **Do not open Screen Time or Digital Wellbeing yet. Think about your own primary smartphone, including all activities counted by its usage report, during the seven completed days ending yesterday. Exclude tablets, laptops and other phones.**
+
+4. **What was yesterday's date?** → `reference_end_date`
+   Required short answer in YYYY-MM-DD. This is the final day of your reference period. Example: when the last day is 2026-10-17, the first is 2026-10-11.
+5. **Before checking your phone's report, what do you estimate your average DAILY screen time was during those seven days?** → `estimated_daily_time`
+   Required short answer: duration in H:MM. It is a daily average, not a weekly total or a clock time. Use hours and minutes, not decimal hours. Do not revise this estimate after checking.
+
+The date example is illustrative; use yesterday on the actual day of responding. Do not put a suggested screen-time estimate into the question.
+
+## Section 3 — phone-recorded daily totals
+Now open the phone report. Record each completed date, oldest first. Count only this same primary phone. Enter durations as H:MM: for example, 1 hour 5 minutes is 1:05; 50 minutes is 0:50. These examples explain units, not typical usage.
+
+- **iPhone:** Settings → Screen Time → See All App & Website Activity. Select this iPhone under Devices, use the daily view and navigate to the required dates. Do not copy an All Devices total.
+- **Android:** Settings → Digital Wellbeing & parental controls → usage chart/dashboard. Navigate to the completed daily totals. Labels and history navigation vary by manufacturer.
+- If the report cannot show the required history, do not invent a value. Leave that day blank and select No/Not sure for the final scope check.
+
+6–12. Seven short-answer questions:
+| Question | CSV heading |
+|---|---|
+| Day 1: screen time six days before your reference end date | day_1_time |
+| Day 2: screen time five days before your reference end date | day_2_time |
+| Day 3: screen time four days before your reference end date | day_3_time |
+| Day 4: screen time three days before your reference end date | day_4_time |
+| Day 5: screen time two days before your reference end date | day_5_time |
+| Day 6: screen time one day before your reference end date | day_6_time |
+| Day 7: screen time on your reference end date (yesterday) | day_7_time |
+
+Allow blank daily entries so missing history is distinguishable from zero. The analysis excludes incomplete weeks and explains why. A genuine zero is 0:00. Do not request screenshots.
+
+Optional short-answer pattern validation for estimate and nonblank daily values:
+```text
+^([01]?[0-9]|2[0-3]):[0-5][0-9]$|^24:00$
+```
+Use “matches” and the help message “Enter a duration from 0:00 to 24:00 in hours:minutes.” The Python importer also validates all durations.
+
+## Section 4 — final checks
+Required multiple choice: Yes / No / Not sure.
+13. **Did you enter your estimate before viewing the phone's usage report today, and leave that estimate unchanged after checking?** → `estimate_before_check`
+14. **Did you transcribe all seven correct completed dates from the same primary smartphone that you personally used throughout, without shared-phone use, a phone change, or combined-device totals?** → `record_scope_confirmed`
+
+Only Yes to both is included in the primary analysis. An honest No is preferable to guessing.
 
 ## Invitation draft
+> Hi! We are doing a B.Tech Data Analytics course project on estimated and phone-recorded smartphone use. If you are a B.Tech student and haven't already taken part, please fill this short form. You will need seven completed days of usage history on your primary phone. Please enter your estimate before opening the usage report. We don't ask for your name, email or college. Participation is voluntary. [Insert form link]
 
-> Hi! We are doing a Data Analytics coursework project about how B.Tech students estimate their smartphone use. Students from any college can participate. You will first estimate your average daily use, then check seven completed days in your phone's usage report. Please do not open that report before Part A. Participation is voluntary, and we do not ask for your name, email, registration number, app list or screenshots. Please participate only once. Your participant code is [CODE]. Start here: [PART A LINK].
+This draft is not sent automatically. Pilot the instructions first, especially access to older daily records.
 
-Do not send this automatically. Share after pilot and protocol freeze. Supply one unique code to each person; the team keeps only the code's issued/used status, without a name/contact mapping in the dataset.
+## Export
+Participants never enter IDs. Use the CSV headings shown above, or map the form's full question titles in `config/real.json`. See [real data guide](REAL_DATA_GUIDE.md). The template has headers only; every row will represent one response.
 
-## Form settings
-
-- Title: **B.Tech Student Smartphone Usage Study — Part A: Estimate**.
-- Turn off email collection; do not request file uploads.
-- No response summaries visible to participants.
-- Disable editing after Part A submission.
-- If sign-in is enabled for any reason, disclose it and do not promise fully anonymous collection. Prefer a configuration that does not require sign-in for this study.
-- Keep separate Part A and Part B response exports; match by participant code.
-- Use branch-to-end for nonconsent, not enrolled or already participated; do not request their usage details.
-- Use form instructions rather than prefilled example answers that could anchor estimates.
-- Mark optional questions explicitly. Preserve missing responses as missing.
-
-## Part A: answer without opening the usage report
-
-Intro:
-
-> This coursework study compares an estimate with the screen time displayed by your primary smartphone. It covers the seven completed days ending yesterday. Include all use on that phone, including study and leisure; exclude other phones, tablets and computers. Results will be reported in aggregate. Participation is voluntary. You may stop before submitting. The project team and instructor may see the research data. We do not request direct identifiers. Keep your participant code to match the two parts; it can also identify your response if you contact the team before analysis is finalised. Please submit your estimate before checking your usage report.
-
-Questions, in order:
-
-1. **Do you voluntarily agree to take part and allow your answers to be used for this coursework study and its aggregate report?** Required choice: Yes / No. No → end.
-2. **Are you currently enrolled in a B.Tech programme?** Required: Yes / No. No → end.
-3. **Have you already participated in this study, including its pilot?** Required: Yes / No. Yes → end.
-4. **Enter the participant code supplied with your invitation.** Required short text.
-5. **What is today's date where you are?** Required date. This fixes the seven-day reference window.
-6. **Which year of B.Tech are you currently in?** Required: 1 / 2 / 3 / 4 / 5 or above.
-7. **College code, if supplied with your invitation.** Optional short text; allow undisclosed. Do not enter a personal registration number.
-8. **Which operating system does your primary smartphone use?** Required: Android / iOS (iPhone) / Other.
-9. **Before answering this form today, have you looked at a phone screen-time report showing any of the previous seven completed days?** Required: No / Yes / Not sure. Keep the answer; do not tell respondents which is preferred.
-10. **Without opening your usage report now, estimate your average screen time per day on your primary smartphone over the seven completed days ending yesterday.** Two required numeric fields: Hours (0–24 integer); Additional minutes (0–59 integer). Explain that this is a daily average, not a seven-day total. Combined time must not exceed 24 hours.
-11. **How often do you usually check your phone's screen-time report?** Optional: Never / Less than once a week / About weekly / Daily or almost daily / Prefer not to say.
-
-Submission confirmation:
-
-> Your estimate has now been saved. Please do not submit Part A again. Keep your participant code and the date you entered. Now open Part B: [LINK]. There you can check and enter your phone's recorded values. Use the seven days ending the day before your Part A date, even if you finish Part B later.
-
-## Part B: read the recorded values
-
-Title: **B.Tech Student Smartphone Usage Study — Part B: Phone Record**.
-
-Intro:
-
-> Complete Part A first. Now open your primary phone's usage report. Read the total screen time for each of the seven completed days in your reference window. Do not enter today's partial total or a combined report for several devices. If a record is unavailable, say so; do not guess. You do not need to send screenshots or app names.
-
-Device guidance:
-
-- Android: Settings → Digital Wellbeing (sometimes “Digital Wellbeing & parental controls”) → usage chart/dashboard. Find the dated daily screen-time totals. Menus differ between manufacturers; if previous days are unavailable, mark incomplete.
-- iPhone: Settings → Screen Time → See All App & Website Activity → Devices → select this iPhone → Day; navigate to the required dates. Do not use “All Devices”.
-- Use each date's total screen time, not a single app, battery usage or time since last charge.
-
-Questions:
-
-1. **Enter the same participant code used in Part A.** Required short text.
-2. **Enter the last date of your reference period: the day before your Part A date.** Required date.
-3. **Which report are you using?** Required: Android Digital Wellbeing / iPhone Screen Time / Other. For Other, optional description; team reviews compatibility before inclusion.
-4. **Can you see a complete screen-time total for every one of the seven dates?** Required: Yes / No / Not sure. No/Not sure → submit incomplete response without forcing invented totals.
-5. **Do these totals refer only to the same primary phone you estimated in Part A?** Required: Yes / No / Not sure. No/Not sure → end as scope not confirmed.
-6. **Was this your personally used, unshared primary phone throughout all seven days, without switching to a replacement phone?** Required: Yes / No / Not sure. No/Not sure → end as scope not confirmed.
-7. **Enter each daily total as hours:minutes, for example 2:07.** Seven required short-text fields. d1 = last date entered above; d2 = one day before d1; ...; d7 = six days before d1. If supported, show actual dates. Otherwise show the offsets explicitly and a clear calendar example unrelated to usage amounts. Accept 0:00–24:00, minute component 00–59, and only 24:00 when hours are 24.
-8. **I copied these seven totals from the phone report rather than estimating them.** Required: Yes / No.
-
-Final confirmation:
-
-> Thank you. Your contribution is complete. Please do not submit another response. Keep your participant code in case you need to report a transcription mistake to the project team.
-
-## Team pilot checklist
-
-Try five volunteers before launching. Check Android/iPhone history access, date selection, time-entry format, correct single-device scope, saving Part A before viewing records, code matching and completion time. Ask which wording was confusing. Revise the draft once, record the revision and freeze the main-study questions. Pilot responses remain separate and are not reused.
-
-## Export handoff
-
-Export both forms as CSV; preserve originals in local `data/raw/`. Do not manually overwrite estimates with recorded values or delete problematic rows in the export. Record actual collection dates, questionnaire version and any protocol deviations. Bring both exports back to this project for joint validation and analysis.
+Official device guidance: [Apple Screen Time](https://support.apple.com/en-gb/guide/iphone/iphbfa595995/ios), [Google Digital Wellbeing](https://support.google.com/android/answer/9346420?hl=en-IN).

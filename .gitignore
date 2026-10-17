@@ -16,3 +16,7 @@ data/processed/*
 data/private/*
 *responses*.csv
 *responses*.xlsx
+outputs/real/
+.pytest_cache/
+.jupyter/
+.mplconfig/
