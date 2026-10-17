@@ -1,5 +1,23 @@
 # Curriculum and Python learning map
 
+## Selected project: screen-time perception among B.Tech students
+
+| Actual study task | Course concept | Purpose |
+|---|---|---|
+| One student, two matched measurements | L4: observations and variables | Establish that estimated and recorded values are paired |
+| Convert hours/minutes and validate seven daily entries | L11–L12 / T3: cleaning | Avoid unit errors, incomplete weeks and impossible values |
+| Join two survey submissions by anonymous participant code | L12–L13: integration/entity identification | Preserve the correct estimate–recorded pairing |
+| Average seven daily totals; calculate signed/absolute error | L17: aggregation and attribute construction | Produce the outcome being studied |
+| Mean, median, sample SD, quartiles and histograms | L5: descriptive statistics | Describe usage and estimation errors |
+| Scatterplot with equality line | L7–L10: relationships | Contrast agreement with correlation |
+| Define H0/H1 and alpha in advance | L21: hypothesis testing | Make the primary question confirmatory |
+| Paired t-test on recorded minus estimated | L22 / T6: paired samples | Test mean bias using the SD of within-person differences |
+| 95% confidence interval for mean difference | L6 and L22 | Express uncertainty in minutes/day |
+
+Primary source for paired differences: `LMS/L22 - Copy.pdf`, physical pp. 27–34; existing note `study-guide/notes/07_Z_T_TESTS.md`, section 8. The paired design does not require a before/after intervention: two measurements of the same person's same-week use also form a pair.
+
+Correlation alone does not measure agreement. Mean absolute error and an optional paired bootstrap are practical extensions. PCA, ANOVA and Apriori are not required for this question.
+
 Based on the parent folder's course map, official course-plan transcript, relevant topic notes, correction register and selected LMS transcripts. Original study files remain untouched. Official lecture numbering is used here; some lecturer filenames use shifted numbers.
 
 | Project work | Course connection | Planned Python tools |

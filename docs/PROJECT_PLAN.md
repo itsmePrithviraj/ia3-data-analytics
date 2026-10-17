@@ -17,14 +17,16 @@ The screenshot does not specify a minimum number of rows. More than 40–50 obse
 ## Agreed sequence
 
 1. Understand the brief and map relevant course concepts — planning review completed.
-2. Discuss topics with real sources — shortlist prepared; student selection pending.
-3. Inspect the chosen dataset together — pending. Verify downloaded row counts, units, categories, collection context, license and missingness. Record URL, retrieval date and file checksum.
+2. Discuss topics with real sources — completed; screen-time perception selected on 17 October 2026, with B.Tech students across colleges in scope.
+3. Prepare and pilot a primary-data survey — draft protocol and exact questions prepared. After collecting responses, preserve the original exports and record collection dates, questionnaire version and file checksums. Inspect actual rows, units, missingness and usable participant counts together.
 4. Specify the primary question, H0/H1, significance level and planned test before examining its p-value. Separate any later exploratory tests from this planned comparison.
 5. Implement explained preprocessing and EDA in a notebook. Preserve raw data, document row changes and justify exclusions.
 6. Perform CDA with assumptions, statistic, degrees of freedom, p-value, effect size and an appropriate confidence interval. Explain conclusions in context.
 7. Export selected plots and tables, produce the 4–5 page report, rerun from a fresh kernel, and check all reported values against saved outputs.
 
-Team number and member details are needed when preparing the report; they do not block topic selection.
+Team number and member details are needed when preparing the report; they do not block preparing the survey.
+
+Selected-study details are in `STUDY_PROTOCOL.md`, `SURVEY_SCRIPT.md` and `ANALYSIS_PLAN.md`. The older dataset shortlist is retained as planning history. No results or completed participant dataset exist yet.
 
 ## Scope and interpretation
 

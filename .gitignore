@@ -11,3 +11,8 @@ WhatsApp Image*.jpeg
 # Add selected raw data deliberately after checking attribution requirements.
 data/raw/*
 !data/raw/README.md
+# Participant-level survey exports and derived datasets stay local by default.
+data/processed/*
+data/private/*
+*responses*.csv
+*responses*.xlsx

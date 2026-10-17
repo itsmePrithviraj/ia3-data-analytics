@@ -1,6 +1,8 @@
 # Topic shortlist
 
-Publisher pages checked on 17 October 2026. Counts below are publisher-reported observations, not independently verified counts from downloaded files. All four pages identify CC BY 4.0 licensing; retain source attribution for the selected data. No topic is selected yet.
+Historical shortlist, superseded by the student's selection of the screen-time study on 17 October 2026. See `STUDY_PROTOCOL.md` for the selected project. The recommendations below describe the earlier selection stage.
+
+Publisher pages checked on 17 October 2026. Counts below are publisher-reported observations, not independently verified counts from downloaded files. All four pages identify CC BY 4.0 licensing; retain source attribution if any are used in future work.
 
 ## 1. Complaints and later telecom churn — recommended overall
 
