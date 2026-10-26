@@ -22,3 +22,9 @@ outputs/real/
 .mplconfig/
 # Internal report rendering and layout checks.
 report/work/
+
+# Local notes and report preparation files
+.local-notes/
+
+# Analysis outputs are recreated by run.py
+outputs/

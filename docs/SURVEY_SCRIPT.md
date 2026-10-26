@@ -1,4 +1,4 @@
-# Single survey form — ready to copy
+# Survey questions
 **Title:** B.Tech Smartphone Usage Study
 
 **Description:** We are conducting a Data Analytics course project about how B.Tech students estimate smartphone use. Please first estimate your usage, then check your phone's report for the same seven completed days. Participation is voluntary. We do not ask for your name, email, college or contact details. Individual responses will be kept by the project team for analysis; the course report will present aggregated results. You can stop before submitting. Because we do not collect an identifying code, we may be unable to locate your response for withdrawal after submission.
@@ -6,7 +6,7 @@
 ## Settings and flow
 Use one form with sections. Turn off email collection, public response summaries and response editing after submission. Avoid sign-in requirements where possible; the form itself should not ask for an identifier. Do not enable a sign-in-based one-response restriction without reconsidering the participation wording.
 
-A section break is an instruction aid, not a technical lock against going back. Do not claim that it prevents estimate editing. No form has been created or invitations sent automatically.
+A section break is an instruction aid, not a technical lock against going back. Do not claim that it prevents estimate editing.
 
 ## Section 1 — participation
 Use required Yes / No multiple choice. Branch No to the end, without proceeding to usage questions.
@@ -60,7 +60,7 @@ Only Yes to both is included in the primary analysis. An honest No is preferable
 ## Invitation draft
 > Hi! We are doing a B.Tech Data Analytics course project on estimated and phone-recorded smartphone use. If you are a B.Tech student and haven't already taken part, please fill this short form. You will need seven completed days of usage history on your primary phone. Please enter your estimate before opening the usage report. We don't ask for your name, email or college. Participation is voluntary. [Insert form link]
 
-This draft is not sent automatically. Pilot the instructions first, especially access to older daily records.
+Pilot the instructions first, especially access to older daily records.
 
 ## Export
 Participants never enter IDs. Use the CSV headings shown above, or map the form's full question titles in `config/real.json`. See [real data guide](REAL_DATA_GUIDE.md). The template has headers only; every row will represent one response.

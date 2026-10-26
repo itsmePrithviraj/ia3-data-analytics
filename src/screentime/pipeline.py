@@ -27,7 +27,7 @@ METRICS = ["estimated_daily_minutes", "recorded_daily_minutes", "signed_error_mi
 
 
 def parse_time(value):
-    """L11–L12: strict H:MM parsing; missing/invalid is NaN, never zero."""
+    """Strict H:MM parsing; missing/invalid is NaN, never zero."""
     match = re.fullmatch(r"(\d{1,2}):([0-5]\d)", str(value).strip())
     if not match:
         return np.nan
@@ -80,7 +80,7 @@ def load_source(config_path):
 
 
 def prepare_data(raw, kind):
-    """L4, L11–L13, L17: one row per student; validate and derive variables."""
+    """One row per student; validate and derive variables."""
     frame = raw.copy().reset_index(drop=True)
     frame.insert(0, "source_row", np.arange(2, len(frame) + 2))  # physical CSV row, including header
     prefix = "SIM" if kind == "SIMULATED" else "ST"
@@ -122,7 +122,7 @@ def prepare_data(raw, kind):
 
 
 def paired_analysis(clean, alpha=0.05):
-    """L21–L22: paired t-test is a one-sample t-test on within-person differences."""
+    """A paired t-test is a one-sample t-test on within-person differences."""
     difference = clean["signed_error_minutes"].to_numpy(float)
     n = len(difference)
     result = {"n": n, "alpha": alpha, "difference": "recorded minus estimated, minutes/day",
