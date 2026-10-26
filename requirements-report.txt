@@ -1,0 +1,2 @@
+# Install alongside requirements.txt only when rebuilding the Word report.
+python-docx==1.2.0

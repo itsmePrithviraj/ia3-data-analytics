@@ -1,7 +1,7 @@
 # The Screen-Time Blind Spot
 **Estimated versus phone-recorded screen time among B.Tech students**
 
-CES 2103 — IA3 Data Analytics. Python implementation completed for development; survey collection and the final report are pending.
+CES 2103 — IA3 Data Analytics. Python implementation and a seven-page simulated-data report are complete; genuine survey collection remains pending. Team 3 reports: [PDF](report/Team_03.pdf) and [Word](report/Team_03.docx).
 
 **The included dataset is SIMULATED: 120 fictional responses, 112 usable pairs and 8 deliberate validation cases. No students were surveyed to produce it.** Generated rows must not be submitted as collected student evidence.
 
@@ -60,11 +60,15 @@ outputs/simulated/ labelled demonstration tables, figures and audit
 outputs/real/      local real-data results (ignored by Git)
 tests/              statistical and data-validation checks
 docs/               protocol, form, curriculum and report handoff
-report/             reserved for the later 4–5 page report
+report/             current Team 3 Word and PDF reports
 ```
 
 Every run preserves source data and exports a row audit, cleaned table, descriptive statistics, exclusion counts, statistics JSON, figures, summary and provenance manifest. Missing daily totals are not replaced with invented values. Identical patterns are flagged for review, not automatically deleted.
 
 Keep real participant records local. **A tracked notebook can contain real rows and plots after execution; clear its outputs before committing any real-data run.** The parent study folder is reference material and is not changed or uploaded.
 
-Target 100 valid responses, with 60 as a practical project target minimum, not a power calculation or a requirement in the screenshot. Never top up real responses with generated rows. The final report is pending, with submission due **26 October 2026** according to the supplied screenshot.
+Target 100 valid responses, with 60 as a practical project target minimum, not a power calculation or a requirement in the screenshot. Never top up real responses with generated rows. The current report explicitly uses simulation. Acceptance of a simulation-only dataset needs instructor confirmation; submission is due **26 October 2026** according to the supplied screenshot.
+
+## Report edition and source files
+
+The expanded report includes simple statistical interpretations, three figures, code excerpts and the repository link. Its seven pages were requested for readability; the assignment brief itself specifies 4–5 pages. See [report build instructions](report/README.md) for the tracked document and figure scripts. The analysis code, notebook, configurations and tests are included in this repository.
